@@ -1,25 +1,25 @@
 package TrabajoFinal.TrabajoFinal.Menus;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
+import TrabajoFinal.TrabajoFinal.Contenedores.ContUsuarios;
 import TrabajoFinal.TrabajoFinal.Modelos.Usuario;
 
 public class Login {
     private Scanner sc;
     private boolean continuar = true;
-    private ArrayList<Usuario> listaUsuarios;
+    private ContUsuarios contUsuarios;
+    private Register mRegister;
     private MenuClientes mClientes = new MenuClientes();
     private MenuEmpleado mEmpleado = new MenuEmpleado();
 
     //constructor que recibe una Arraylist y un Scanner desde el main
-    public Login(Scanner sc, ArrayList<Usuario> listaUsuarios) {
+    public Login(Scanner sc, ContUsuarios contUsuarios) {
         this.sc = sc;
-        this.listaUsuarios = listaUsuarios;
+        this.contUsuarios = contUsuarios;
+        //es el menu de registros recibe el scanner y la lista
+        mRegister = new Register(sc, contUsuarios);
     }
-
-    //es el menu de registros recibe el scanner y la lista
-    private Register mRegister = new Register(sc, listaUsuarios);
 
     public void iniciar(){
         System.out.println("Bienvenido Mercado Libre");
@@ -56,7 +56,7 @@ public class Login {
     private void login(){
         System.out.println("Ingrese el nombre de usuario");
         String username = this.sc.next();
-        Usuario usuarioEncontrado = this.buscarUsuario(username);
+        Usuario usuarioEncontrado = this.contUsuarios.buscarUsuario(username);
 
         if (usuarioEncontrado == null ) {
             System.out.println("El usuario no existe");
@@ -77,15 +77,5 @@ public class Login {
         }
 
     }
-    //verifica que  el nombre de usuario sea correcto, si es correcto te devuelve usuario y sino te devuelve un null
-    private Usuario buscarUsuario(String username){
-        Usuario  usuarioBuscado = null;
-        for (Usuario usuario : listaUsuarios) {
-            if (usuario.getUsername().equals(username)) {
-                usuarioBuscado = usuario;
-            }
-        }
-        
-        return usuarioBuscado;
-    }
+    
 }

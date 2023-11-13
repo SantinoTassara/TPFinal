@@ -4,12 +4,13 @@ public class Usuario {
     private String username;
     private String password;
     private String rol;
-    private Carrito carrito = new Carrito();
+    private Carrito carrito;
     
     public Usuario(String username, String password, String rol) {
         this.username = username;
         this.password = password;
         this.rol = rol;
+        this.carrito = new Carrito();
     }
 
     public String getUsername() {

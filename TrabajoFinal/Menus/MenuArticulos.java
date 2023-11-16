@@ -1,19 +1,20 @@
 package TrabajoFinal.TrabajoFinal.Menus;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
+import TrabajoFinal.TrabajoFinal.Contenedores.ContArticulos;
 import TrabajoFinal.TrabajoFinal.Modelos.Producto;
 
 public class MenuArticulos {
+
+    private ContArticulos contenedorArticulos;
     boolean continuar = true;
-    ArrayList<Producto> listaArticulos;
     Scanner sc;
     int cantArticulos = 0;
     
-    public MenuArticulos(ArrayList<Producto> listaArticulos, Scanner sc) {
-        this.listaArticulos = listaArticulos;
+    public MenuArticulos(Scanner sc) {
         this.sc = sc;
+        this.contenedorArticulos = new ContArticulos(sc);
     }
 
     private void salir(){
@@ -47,25 +48,17 @@ public class MenuArticulos {
         case 1:
             this.cargarArticulo();
             break;
+        case 2:
+            this.contenedorArticulos.editarArticulo();
         case 3:
-            this.mostrarAllArticulos();
+            this.contenedorArticulos.mostrarAllArticulos();
             break;
         default:
             System.out.println("Opcion incorrecta");
             break;
        }
     }
-    private void mostrarArticulo(Producto producto){
-        System.out.println("--------------------");
-        System.out.println("Nombre: "+producto.getNombreArticulo());
-        System.out.println("Precio: "+producto.getPrecio());
-        System.out.println("Descripcion: "+producto.getDescripcion());
-        System.out.println("Codigo del Articulo: "+producto.getCodigoArticulo());
-        System.out.println("Stock disponible: "+producto.getStock());
-        System.out.println("Rubro: "+producto.getRubro());
-        System.out.println("--------------------");
 
-    }
     private void cargarArticulo(){
         
         System.out.println("Ingrese el nombre del producto: ");
@@ -77,19 +70,16 @@ public class MenuArticulos {
 
         int codigoArticulo = cantArticulos;
         cantArticulos++;
+        
         System.out.println("Ingrese el Stock: ");
         int stock = this.sc.nextInt();
         
-        System.out.println("Ingrese el rubro: ");
-        char rubro = 'A';
+        char rubro = this.contenedorArticulos.seleccionRubro();
+
+        //tengo que arreglar la seleccion del rubro
 
         Producto nuevoProducto = new Producto(nombre, precio, descripcion, codigoArticulo, stock, rubro);
-        this.listaArticulos.add(nuevoProducto);
+        this.contenedorArticulos.add(nuevoProducto);
       }
     
-      private void mostrarAllArticulos(){
-        for (Producto producto : listaArticulos) {
-            this.mostrarArticulo(producto);
-        }
-      }
 }

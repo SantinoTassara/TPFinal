@@ -42,7 +42,7 @@ public class ContArticulos {
     }
 
     public void add(Producto producto){
-        listaArticulos.add(producto);
+        this.listaArticulos.add(producto);
     }
 
     public void editarArticulo(){
@@ -60,7 +60,7 @@ public class ContArticulos {
             System.out.println("Ingrese la nueva descripcion del articulo: ");
             //String nuevaDescripcion = this.sc.next();
             
-            //char nuevoRubro = seleccionRubro();
+            char nuevoRubro = seleccionRubro();
 
             //Aca va la modificacion del objeto
         }

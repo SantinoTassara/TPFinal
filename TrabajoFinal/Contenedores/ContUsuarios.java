@@ -53,9 +53,9 @@ public class ContUsuarios {
     //define si el usuario es cliente o empleado
        public String elegirRol(){
         
-        String rol = null;
+        String rol = "falso";
         
-        while (rol == null) {
+        while (rol == "falso") {
 
             System.out.println("Elija el rol del usuario: ");
             System.out.println("1.Cliente");

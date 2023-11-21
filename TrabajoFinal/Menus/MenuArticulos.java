@@ -12,9 +12,9 @@ public class MenuArticulos {
     Scanner sc;
     int cantArticulos = 0;
     
-    public MenuArticulos(Scanner sc) {
+    public MenuArticulos(Scanner sc, ContArticulos contArticulo) {
         this.sc = sc;
-        this.contenedorArticulos = new ContArticulos(sc);
+        this.contenedorArticulos = contArticulo;
     }
 
     private void salir(){

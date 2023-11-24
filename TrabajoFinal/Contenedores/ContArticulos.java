@@ -1,6 +1,7 @@
 package TrabajoFinal.TrabajoFinal.Contenedores;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import TrabajoFinal.TrabajoFinal.Modelos.Producto;
@@ -25,7 +26,7 @@ public class ContArticulos {
         return articuloBuscado;
     }
 
-    private void mostrarArticulo(Producto producto){
+    public void mostrarArticulo(Producto producto){
         System.out.println("--------------------");
         System.out.println("Nombre: "+producto.getNombreArticulo());
         System.out.println("Precio: "+producto.getPrecio());
@@ -67,13 +68,13 @@ public class ContArticulos {
     }
 
     public char seleccionRubro(){
-        char rubro = 'D';
-        System.out.println("seleccione a que rubro pertenece el producto: ");
+        char rubro = 0;
+        System.out.println("Seleccione a que rubro pertenece el producto: ");
         System.out.println("1.Rubro: A");
         System.out.println("2.Rubro: B");
         System.out.println("3.Rubro: C");
         
-        while (rubro != 'A' || rubro != 'B' || rubro != 'C') {
+        try{
             int opcion = this.sc.nextInt();
             switch (opcion) {
                 case 1:
@@ -88,9 +89,10 @@ public class ContArticulos {
                     System.out.println("Opcion incorrecta");
                     break;
             }
+        }catch(InputMismatchException e){
+            System.out.println("ERROR: La opcion seleccionada es invalida!!!");
         }
         return rubro;
     }
-    
 
 }

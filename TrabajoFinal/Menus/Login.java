@@ -12,7 +12,7 @@ public class Login {
     private ContUsuarios contUsuarios;
     private Register mRegister;
     private ContArticulos contArticulos;
-    private MenuClientes mClientes = new MenuClientes();
+    private MenuClientes mClientes = new MenuClientes(sc,contArticulos, contUsuarios);
     private MenuEmpleado mEmpleado = new MenuEmpleado(sc, contArticulos);
 
     //constructor que recibe una Arraylist y un Scanner desde el main
@@ -20,8 +20,10 @@ public class Login {
         this.sc = sc;
         this.contUsuarios = contUsuarios;
         this.contArticulos = contArticulos;
-        //es el menu de registros recibe el scanner y la lista
+        //los menus reciben el scanner y la lista
         mRegister = new Register(sc, contUsuarios);
+        mClientes = new MenuClientes(sc, contArticulos, contUsuarios);
+        mEmpleado = new MenuEmpleado(sc, contArticulos);
     }
 
     public void iniciar(){
@@ -69,9 +71,9 @@ public class Login {
             if (usuarioEncontrado.getPassword().equals(password)) {
                 //Aca verifica si el usuario es empleado o Cliente
                 if (usuarioEncontrado.getRol().equals("Cliente")) {
-                    mClientes.iniciar();
+                    mClientes.iniciar(usuarioEncontrado);
                 }else if (usuarioEncontrado.getRol().equals("Empleado")) {
-                    mEmpleado.iniciar();
+                    mEmpleado.iniciar(usuarioEncontrado);
                 }
 
             }else{

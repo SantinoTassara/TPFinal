@@ -77,8 +77,6 @@ public class MenuArticulos {
         
         char rubro = this.contenedorArticulos.seleccionRubro();
 
-        //tengo que arreglar la seleccion del rubro
-
         Producto nuevoProducto = new Producto(nombre, precio, descripcion, codigoArticulo, stock, rubro);
         this.contenedorArticulos.add(nuevoProducto);
       }

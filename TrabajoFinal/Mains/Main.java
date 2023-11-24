@@ -1,3 +1,16 @@
+/*Cosas a agregar:
+    -Carrito
+    -Editar articulos
+    Menu Cliente:
+    -Todas las opciones que tiene que ver con el carrito y transferencia de dinero a otros Usuarios
+    Menu empleado: 
+    -todo
+    Articulos:
+    -Edicion de articulos
+    -Clases hijas de Productos (ArtSimple, ArtSub, ArtXDemanda)
+    -Descuentos
+*/
+
 package TrabajoFinal.TrabajoFinal.Mains;
 
 

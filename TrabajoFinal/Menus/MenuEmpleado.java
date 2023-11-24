@@ -3,6 +3,7 @@ package TrabajoFinal.TrabajoFinal.Menus;
 import java.util.Scanner;
 
 import TrabajoFinal.TrabajoFinal.Contenedores.ContArticulos;
+import TrabajoFinal.TrabajoFinal.Modelos.Usuario;
 
 public class MenuEmpleado {
     //private boolean continuar = true;
@@ -18,7 +19,7 @@ public class MenuEmpleado {
 
 
     //cuando crees la funcion agregar articulo, pregunta que se puedan crear los 3 tipos de articulos
-    public void iniciar(){
+    public void iniciar(Usuario usuario){
         System.out.println("----------MENU EMPLEADO----------");
         System.out.println("Ingresar al menu de articulos");
         mArticulos.iniciar();

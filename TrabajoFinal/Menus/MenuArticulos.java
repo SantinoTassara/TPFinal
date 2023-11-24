@@ -1,5 +1,6 @@
 package TrabajoFinal.TrabajoFinal.Menus;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import TrabajoFinal.TrabajoFinal.Contenedores.ContArticulos;
@@ -34,29 +35,41 @@ public class MenuArticulos {
         return opcion;
     }
     private void mostrarOpciones(){
-        System.out.println("--------------------");
+        System.out.println("---------- Menu de Articulos ----------");
         System.out.println("1.Cargar Articulo");
         System.out.println("2.Editar Articulo");
         System.out.println("3.Mostrar Todos los Articulos");
+        System.out.println("4.Gestionar Stock");
+        System.out.println("5.Volver al menu de empleados");
         System.out.println("--------------------");
     }
     private void ejecutarOpcion(int opcion){
-       switch (opcion) {
-        case 0:
-            this.salir();
-            break;
-        case 1:
-            this.cargarArticulo();
-            break;
-        case 2:
-            this.contenedorArticulos.editarArticulo();
-        case 3:
-            this.contenedorArticulos.mostrarAllArticulos();
-            break;
-        default:
-            System.out.println("Opcion incorrecta");
-            break;
-       }
+       try{
+            switch (opcion) {
+            case 0:
+                this.salir();
+                break;
+            case 1:
+                this.cargarArticulo();
+                break;
+            case 2:
+                this.contenedorArticulos.editarArticulo();
+            case 3:
+                this.contenedorArticulos.mostrarAllArticulos();
+                break;
+            case 4:
+                //Gestionar Stock
+                break;
+            case 5:
+                this.salir();
+                break;
+            default:
+                System.out.println("Opcion incorrecta");
+                break;
+        }
+       }catch(InputMismatchException e){
+            System.out.println("ERROR: La opcion seleccionada es invalida!!!");
+        }
     }
     
 

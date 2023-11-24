@@ -40,7 +40,7 @@ public class MenuClientes {
     }
 
     private void mostrarOpciones(){
-        System.out.println("==== Menu Usuario====");
+        System.out.println("-------- Menu Usuario --------");
         System.out.println("1. Agregar dinero a la cuenta");
         System.out.println("2. Retirar dinero de la cuenta");
         System.out.println("3. Transferir dinero a otro usuario");
@@ -50,6 +50,7 @@ public class MenuClientes {
         System.out.println("7. Agregar Producto al carrito");
         System.out.println("8. Ingresar al menu del carrito");
         System.out.println("0. Salir");
+        System.out.println("-----------------------------");
     }
 
     private void ejecutarOpcion(int opcion){

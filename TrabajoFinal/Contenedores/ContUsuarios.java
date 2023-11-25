@@ -82,7 +82,4 @@ public class ContUsuarios {
         return rol;
     }
 
-    public void transferirDinero(){
-        //opcion de tranferencia
-    }
 }

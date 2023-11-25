@@ -64,7 +64,7 @@ public class MenuClientes {
                     break;
                 
                 case 3:
-                    this.contUsuarios.transferirDinero();
+                    this.transferirDinero();
                     break;
 
                 case 4:
@@ -137,5 +137,8 @@ public class MenuClientes {
         }else{
             this.contArticulos.mostrarArticulo(articuloBuscado); 
         }     
+    }
+    private void transferirDinero(){
+        
     }
 }

@@ -1,6 +1,6 @@
 package TrabajoFinal.TrabajoFinal.Modelos;
 
-public class Producto {
+public abstract class Producto {
     private String nombreArticulo;
     private double precio;
     private String descripcion;
@@ -66,7 +66,7 @@ public class Producto {
         this.rubro = rubro;
     }
     
+    public abstract double getPrecioFinal();    
 
-    
-
+    public abstract String toString();
 }

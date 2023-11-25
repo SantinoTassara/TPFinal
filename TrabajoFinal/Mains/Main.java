@@ -1,14 +1,13 @@
 /*Cosas a agregar:
     -Carrito
-    -Editar articulos
     Menu Cliente:
     -Todas las opciones que tiene que ver con el carrito y transferencia de dinero a otros Usuarios
     Menu empleado: 
-    -todo
+    -edicion de stock
+    -otras cosas (Revisar)
     Articulos:
     -Edicion de articulos
-    -Clases hijas de Productos (ArtSimple, ArtSub, ArtXDemanda)
-    -Descuentos
+    -hay que verificar si los descuentos se aplican correctamente
 */
 
 package TrabajoFinal.TrabajoFinal.Mains;
@@ -29,5 +28,7 @@ public class Main {
         Login mLogin = new Login(sc, contUsuarios, contArticulos);
 
         mLogin.iniciar();
+
+        
     }
 }

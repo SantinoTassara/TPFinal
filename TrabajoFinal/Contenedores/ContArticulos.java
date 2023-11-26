@@ -1,7 +1,6 @@
 package TrabajoFinal.TrabajoFinal.Contenedores;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import TrabajoFinal.TrabajoFinal.Modelos.Producto;
@@ -55,43 +54,65 @@ public class ContArticulos {
             System.out.println("El articulo buscado no existe");
         }else{
             System.out.println("Ingrese el nuevo nombre del articulo: ");
-            //String nuevoNombre = this.sc.next();
+            String nuevoNombre = this.sc.next();
+            articuloAEditar.setNombreArticulo(nuevoNombre);
             System.out.println("Ingrese el nuevo precio del articulo:");
-            //double nuevoPrecio = this.sc.nextDouble();
+            double nuevoPrecio = this.sc.nextDouble();
+            articuloAEditar.setPrecio(nuevoPrecio);
             System.out.println("Ingrese la nueva descripcion del articulo: ");
-            //String nuevaDescripcion = this.sc.next();
+            String nuevaDescripcion = this.sc.next();
+            articuloAEditar.setDescripcion(nuevaDescripcion);
+            
+            int nuevoIdAriculo = this.codigoArticulos();
+            articuloAEditar.setCodigoArticulo(nuevoIdAriculo);
             
             char nuevoRubro = seleccionRubro();
+            articuloAEditar.setRubro(nuevoRubro);
 
-            //Aca va la modificacion del objeto
         }
     }
+    public int codigoArticulos(){
+        int codigoArticulo = 0;
+        boolean noRepetido = true;
+        
+        while (noRepetido == true) {
+            System.out.println("Ingresa el id del articulo: ");
+            codigoArticulo = this.sc.nextInt();
 
+            for (Producto producto : listaArticulos) {
+                if (codigoArticulo == producto.getCodigoArticulo()) {
+                    noRepetido = false;
+                    System.out.println("Ya existe ese ID de producto, ingrese otro.");
+                    break;
+                }
+            }
+        }
+
+        return codigoArticulo;
+    }
     public char seleccionRubro(){
         char rubro = 0;
         System.out.println("Seleccione a que rubro pertenece el producto: ");
-        System.out.println("1.Rubro: A");
-        System.out.println("2.Rubro: B");
-        System.out.println("3.Rubro: C");
+        System.out.println("1.Rubro: Alimentos");
+        System.out.println("2.Rubro: Electrodomesticos");
+        System.out.println("3.Rubro: Indumentaria");
         
-        try{
-            int opcion = this.sc.nextInt();
+
+            String opcion = this.sc.next();
             switch (opcion) {
-                case 1:
+                case "1":
                     rubro = 'A';
                     break;
-                case 2:
+                case "2":
                     rubro = 'B';
                     break;
-                case 3:
+                case "3":
                     rubro = 'C';
                 default:
                     System.out.println("Opcion incorrecta");
                     break;
             }
-        }catch(InputMismatchException e){
-            System.out.println("ERROR: La opcion seleccionada es invalida!!!");
-        }
+        
         return rubro;
     }
 

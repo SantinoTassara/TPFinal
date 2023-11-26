@@ -12,8 +12,8 @@ public class Login {
     private ContUsuarios contUsuarios;
     private Register mRegister;
     private ContArticulos contArticulos;
-    private MenuClientes mClientes = new MenuClientes(sc,contArticulos, contUsuarios);
-    private MenuEmpleado mEmpleado = new MenuEmpleado(sc, contArticulos);
+    private MenuClientes mClientes;
+    private MenuEmpleado mEmpleado;
 
     //constructor que recibe una Arraylist y un Scanner desde el main
     public Login(Scanner sc, ContUsuarios contUsuarios, ContArticulos contArticulos) {
@@ -26,17 +26,22 @@ public class Login {
         mEmpleado = new MenuEmpleado(sc, contArticulos);
     }
 
+    private void salir(){
+        continuar = false;
+        System.out.println("Gracias por elegirnos");
+    }
+
     public void iniciar(){
-        System.out.println("Bienvenido Mercado Libre");
+        System.out.println("Bienvenido Pepeopiola's");
         while (continuar) {
-            int opcion = this.elegirOpcion();
+            String opcion = this.elegirOpcion();
             this.ejecutarOpcion(opcion);
         }
     }
 
-    private int elegirOpcion(){
+    private String elegirOpcion(){
         this.mostrarOpciones();
-        int opcion = this.sc.nextInt();
+        String opcion = this.sc.next();
         return opcion;
     }
     
@@ -45,13 +50,16 @@ public class Login {
         System.out.println("2.Login");
     }
 
-    private void ejecutarOpcion(int opcion){
+    private void ejecutarOpcion(String opcion){
         switch (opcion) {
-            case 1:
-                    this.mRegister.registrarUsuario();
+            case "0":
+                this.salir();
                 break;
-            case 2:
-                    this.login();
+            case "1":
+                this.mRegister.registrarUsuario();
+                break;
+            case "2":
+                this.login();
                 break;
             default:
                 break;

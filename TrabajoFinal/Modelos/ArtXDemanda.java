@@ -3,6 +3,7 @@ package TrabajoFinal.TrabajoFinal.Modelos;
 public class ArtXDemanda extends Producto {
     private int stockDeseado;
 
+
     public ArtXDemanda(String nombreArticulo, double precio, String descripcion, int codigoArticulo, int stock,
             char rubro, int stockDeseado) {
         super(nombreArticulo, precio, descripcion, codigoArticulo, stock, rubro);

@@ -49,7 +49,11 @@ public class ContUsuarios {
         }
         return clave;
     }
-
+    public void mostrarAllUsuarios(){
+        for (Usuario usuario : listaUsuarios) {
+            System.out.println(usuario.toString());
+        }
+    }
     //define si el usuario es cliente o empleado
        public String elegirRol(){
         

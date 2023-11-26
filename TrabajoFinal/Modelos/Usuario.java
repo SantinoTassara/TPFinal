@@ -5,13 +5,12 @@ public class Usuario {
     private String password;
     private String rol;
     private Double billetera = 0.0;
-    private Carrito carrito;
+
     
     public Usuario(String username, String password, String rol) {
         this.username = username;
         this.password = password;
         this.rol = rol;
-        this.carrito = new Carrito();
     }
 
     public String getUsername() {
@@ -29,21 +28,12 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public Carrito getCarrito() {
-        return carrito;
-    }
-
     public String getRol() {
         return rol;
     }
 
     public void setRol(String rol) {
         this.rol = rol;
-    }
-
-    public void setCarrito(Carrito carrito) {
-        this.carrito = carrito;
     }
 
     public Double getBilletera() {
@@ -53,10 +43,4 @@ public class Usuario {
     public void setBilletera(Double billetera) {
         this.billetera = billetera;
     }
-
-    
-
-
-
-
 }

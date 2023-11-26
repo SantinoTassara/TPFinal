@@ -1,9 +1,9 @@
 package TrabajoFinal.TrabajoFinal.Menus;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import TrabajoFinal.TrabajoFinal.Contenedores.ContArticulos;
+import TrabajoFinal.TrabajoFinal.Modelos.Producto;
 import TrabajoFinal.TrabajoFinal.Modelos.Usuario;
 
 public class MenuEmpleado {
@@ -11,7 +11,6 @@ public class MenuEmpleado {
     private Scanner sc;
     private MenuArticulos mArticulos;
     private ContArticulos contArticulos;
-    private Usuario empleadoLogueado;
     
 
     public MenuEmpleado(Scanner sc, ContArticulos contArticulos) {
@@ -27,40 +26,59 @@ public class MenuEmpleado {
     }
 
     public void iniciar(Usuario usuario){
-        empleadoLogueado = usuario;
         while (continuar) {
-            int opcion = this.elegirOpcion();
+            String opcion = this.elegirOpcion();
             this.ejecutarOpcion(opcion);
         }
     }
 
-    private int elegirOpcion(){
+    private String elegirOpcion(){
         this.mostrarOpciones();
-        int opcion = this.sc.nextInt();
+        String opcion = this.sc.next();
         return opcion;
     }
     private void mostrarOpciones(){
         System.out.println("---------- Menu de Empleado ----------");
         System.out.println("0. Salir");
         System.out.println("1. Ingresar al menu de gestion de articulos");
-        System.out.println("2. ");
+        System.out.println("2. Editar Stock de un producto");
         System.out.println("3. ");
         System.out.println("--------------------------------------");
     }
-    private void ejecutarOpcion(int opcion){
-        try{
+    private void ejecutarOpcion(String opcion){
+        
             switch (opcion) {
-            case 0:
+            case "0":
                 this.salir();
                 break;
-            case 1:
+            case "1":
                 this.mArticulos.iniciar();
+                break;
+            case "2":
+                this.editarStock();
                 break;
             default:
                 break;
-        }
-        }catch(InputMismatchException e){
-            System.out.println("ERROR: La opcion seleccionada es invalida!!!");
+            }
+    }
+    private void editarStock() {
+        System.out.println("Ingrese el nombre del producto a editar el stock:");
+        String nombreBuscado = this.sc.next();
+
+        // Busca el producto en la lista
+        Producto productoBuscado = this.contArticulos.articuloBuscado(nombreBuscado);
+
+        if (productoBuscado == null) {
+            System.out.println("El producto buscado no existe.");
+        } else {
+            // Mostrar el stock actual y solicitar la nueva cantidad
+            System.out.println("El stock actual es: " + productoBuscado.getStock());
+            System.out.println("Ingrese el nuevo stock del producto:");
+            int nuevoStock = this.sc.nextInt();
+
+            // agregar el producto nuevo al stock
+            productoBuscado.setStock(nuevoStock);
+            System.out.println("Stock actualizado correctamente.");
         }
     }
 }

@@ -1,9 +1,9 @@
 /*Cosas a agregar:
     -Carrito
     Menu Cliente:
-    -Todas las opciones que tiene que ver con el carrito y transferencia de dinero a otros Usuarios
+    -Todas las opciones que tiene que ver con el carrito
     Menu empleado: 
-    -edicion de stock
+    -edicion de stock(Solo verificar si funciona)
     -otras cosas (Revisar)
     Articulos:
     -Edicion de articulos

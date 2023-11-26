@@ -1,6 +1,5 @@
 package TrabajoFinal.TrabajoFinal.Menus;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import TrabajoFinal.TrabajoFinal.Contenedores.ContArticulos;
@@ -27,14 +26,14 @@ public class MenuArticulos {
 
     public void iniciar(){
         while (continuar) {
-            int opcion = this.elegirOpcion();
+            String opcion = this.elegirOpcion();
             this.ejecutarOpcion(opcion);
         }
     }
 
-    private int elegirOpcion(){
+    private String elegirOpcion(){
         this.mostrarOpciones();
-        int opcion = this.sc.nextInt();
+        String opcion = this.sc.next();
         return opcion;
     }
     private void mostrarOpciones(){
@@ -46,34 +45,31 @@ public class MenuArticulos {
         System.out.println("5.Volver al menu de empleados");
         System.out.println("--------------------");
     }
-    private void ejecutarOpcion(int opcion){
-       try{
+    private void ejecutarOpcion(String opcion){
+      
             switch (opcion) {
-            case 0:
+            case "0":
                 this.salir();
                 break;
-            case 1:
+            case "1":
                 this.cargarArticulo();
                 break;
-            case 2:
+            case "2":
                 this.contenedorArticulos.editarArticulo();
                 break;
-            case 3:
+            case "3":
                 this.contenedorArticulos.mostrarAllArticulos();
                 break;
-            case 4:
+            case "4":
                 //Gestionar Stock
                 break;
-            case 5:
+            case "5":
                 this.salir();
                 break;
             default:
                 System.out.println("Opcion incorrecta");
                 break;
-        }
-       }catch(InputMismatchException e){
-            System.out.println("ERROR: La opcion seleccionada es invalida!!!");
-        }
+            }
     }
     
 
@@ -85,16 +81,16 @@ public class MenuArticulos {
         System.out.println("3. Articulo por demanda");
         System.out.println("----------------------------------");
 
-        int opcion = this.sc.nextInt();
+        String opcion = this.sc.next();
         
         switch (opcion) {
-            case 1:
+            case "1":
                 this.cargarArticuloSimple();
                 break;
-            case 2:
+            case "2":
                 this.cargarArticuloSub();
                 break;
-            case 3:
+            case "3":
                 this.cargarArtXDemanda();
                 break;
             default:
@@ -139,7 +135,7 @@ public class MenuArticulos {
         
         char rubro = this.contenedorArticulos.seleccionRubro();
 
-        Producto nuevoProducto = new ArtSub(nombre, precio, descripcion, codigoArticulo, stock, rubro, codigoArticulo);
+        Producto nuevoProducto = new ArtSub(nombre, precio, descripcion, codigoArticulo, stock, rubro);
         this.contenedorArticulos.add(nuevoProducto);
     }
 
@@ -151,8 +147,7 @@ public class MenuArticulos {
         System.out.println("Ingrese la descripcion del producto: ");
         String descripcion = this.sc.next();
 
-        int codigoArticulo = cantArticulos;
-        cantArticulos++;
+        int codigoArticulo = this.contenedorArticulos.codigoArticulos();
         
         System.out.println("Ingrese el Stock: ");
         int stock = this.sc.nextInt();

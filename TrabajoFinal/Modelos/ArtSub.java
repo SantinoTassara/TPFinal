@@ -2,12 +2,9 @@ package TrabajoFinal.TrabajoFinal.Modelos;
 
 public class ArtSub extends Producto {
 
-    double precioConDescuento;
 
-    public ArtSub(String nombreArticulo, double precio, String descripcion, int codigoArticulo, int stock, char rubro,
-            double precioConDescuento) {
+    public ArtSub(String nombreArticulo, double precio, String descripcion, int codigoArticulo, int stock, char rubro) {
         super(nombreArticulo, precio, descripcion, codigoArticulo, stock, rubro);
-        this.precioConDescuento = precioConDescuento;
     }
 
 

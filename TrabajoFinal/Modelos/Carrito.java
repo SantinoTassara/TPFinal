@@ -1,14 +1,15 @@
 package TrabajoFinal.TrabajoFinal.Modelos;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
-import TrabajoFinal.TrabajoFinal.Contenedores.ContArticulos;
+
 
 public class Carrito {
     private ArrayList<Renglon> listaRenglones;
-    public Carrito(Scanner sc, ContArticulos contArticulos, Usuario usuarioLogueado) {
+    private Usuario usuarioLogueado;
+    public Carrito(Usuario usuarioLogueado) {
         this.listaRenglones = new ArrayList<>();
+        this.usuarioLogueado = usuarioLogueado;
     }
 
     public void agregarProducto(Producto producto, int cantidad) {
@@ -65,6 +66,48 @@ public class Carrito {
     }
 
     public void finalizarCompra(){
+        boolean valido = this.validarStock();
+        double precioFinal = 0;
+        if (valido == true) {
+            for (Renglon renglon : listaRenglones) {
+            Producto producto = renglon.getProducto();
+            double precioFinalProducto = renglon.calcularSubtotal();
+            System.out.println("Cantidad: " + renglon.getCantidad() + "Nombre del producto: " + producto.getNombreArticulo() + "Precio por unidad: " + producto.getPrecio() + "Precio Total" + precioFinalProducto);
+            System.out.println("------------------------------------------");
+            precioFinal = precioFinal + precioFinalProducto;
+        }
+            System.out.println("El total a pagar es: " + precioFinal);
+            if (precioFinal > usuarioLogueado.getBilletera()) {
+                System.out.println("Saldo insuficiente");
+            }else{
+                reducirStock();
+                double dineroADescontar = usuarioLogueado.getBilletera() - precioFinal;
+                usuarioLogueado.setBilletera(dineroADescontar);
+                System.out.println("Compra finalizada. Muchas Gracias");
+            }
+        }
+
+        
+        
+    }
+    private void reducirStock(){
+        for (Renglon renglon : listaRenglones) {
+            Producto producto = renglon.getProducto();
+            int nuevoStock = producto.getStock() - renglon.getCantidad();
+            producto.setStock(nuevoStock);
+        }
+    }
+
+    private boolean validarStock(){
+        boolean valido = true;
+        for (Renglon renglon : listaRenglones) {
+            if (renglon.getProducto().getStock() < renglon.getCantidad()) {
+                System.out.println("Stock insuficiente del producto: " + renglon.toString());
+                valido = false;
+                break;
+            }
+        }
+        return valido;
         
     }
 }

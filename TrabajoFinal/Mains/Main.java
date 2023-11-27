@@ -3,10 +3,8 @@
     Menu Cliente:
     -Todas las opciones que tiene que ver con el carrito
     Menu empleado: 
-    -edicion de stock(Solo verificar si funciona)
     -otras cosas (Revisar)
     Articulos:
-    -Edicion de articulos
     -hay que verificar si los descuentos se aplican correctamente
 */
 

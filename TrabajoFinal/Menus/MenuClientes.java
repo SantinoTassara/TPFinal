@@ -22,7 +22,7 @@ public class MenuClientes {
         this.contArticulos = contArticulos;
         this.contUsuarios = contUsuarios;
 
-        this.carrito = new Carrito(sc, contArticulos, usuarioLogeado);
+        this.carrito = new Carrito(usuarioLogeado);
     }
 
     private void salir(){

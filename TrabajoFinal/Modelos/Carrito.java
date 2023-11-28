@@ -51,7 +51,7 @@ public class Carrito {
         double total = 0.0;
 
         for (Renglon renglon : listaRenglones) {
-            total = renglon.calcularSubtotal();
+            total = total + renglon.calcularSubtotal();
         }
 
         return total;
@@ -77,11 +77,12 @@ public class Carrito {
             precioFinal = precioFinal + precioFinalProducto;
         }
             System.out.println("El total a pagar es: " + precioFinal);
-            if (precioFinal > usuarioLogueado.getBilletera()) {
+            if (precioFinal > this.usuarioLogueado.getBilletera()) {
                 System.out.println("Saldo insuficiente");
             }else{
                 this.reducirStock();
-                double dineroADescontar = usuarioLogueado.getBilletera() - precioFinal;
+                double saldoDisponible = this.usuarioLogueado.getBilletera();
+                double dineroADescontar = saldoDisponible - precioFinal;
                 usuarioLogueado.setBilletera(dineroADescontar);
                 System.out.println("Compra finalizada. Muchas Gracias");
             }

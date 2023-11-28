@@ -7,7 +7,6 @@ public class ArtSub extends Producto {
         super(nombreArticulo, precio, descripcion, codigoArticulo, stock, rubro);
     }
 
-
     public double getPrecioFinal(){
      Double precioConDescuento = getPrecio();
      if (this.getRubro() == 'A') {

@@ -40,34 +40,35 @@ public class MenuArticulos {
                 return opcion;
             }catch(InputMismatchException e){
                 this.sc.nextLine();
-                System.out.println("ERROR: Ingrese una opcion correcta");
+                System.out.println("ERROR: Ingrese una opcion valida");
             }
         }
     }
     private void mostrarOpciones(){
         System.out.println("---------- Menu de Articulos ----------");
+        System.out.println("0.Volver al menu de empleados");
         System.out.println("1.Cargar Articulo");
         System.out.println("2.Editar Articulo");
         System.out.println("3.Mostrar Todos los Articulos");
-        System.out.println("4.Volver al menu de empleados");
+        System.out.println("4.Eliminar Articulo");
         System.out.println("--------------------");
     }
     private void ejecutarOpcion(String opcion){
       
             switch (opcion) {
-            case "0":
-                this.salir();
-                break;
             case "1":
                 this.cargarArticulo();
                 break;
             case "2":
-                this.contenedorArticulos.editarArticulo();
+                this.editarArticulo();
                 break;
             case "3":
                 this.contenedorArticulos.mostrarAllArticulos();
                 break;
             case "4":
+                this.eliminarArticulo();
+                break;
+            case "0":
                 this.salir();
                 break;
             default:
@@ -104,64 +105,136 @@ public class MenuArticulos {
 
     private void cargarArticuloSimple(){
         
-        System.out.println("Ingrese el nombre del producto: ");
-        String nombre = this.sc.next();
-        System.out.println("Ingrese el precio:");
-        double precio = this.sc.nextDouble();
-        System.out.println("Ingrese la descripcion del producto: ");
-        String descripcion = this.sc.next();
+        try{
+            System.out.println("Ingrese el nombre del producto: ");
+            String nombre = this.sc.next();
+            Producto producto = this.contenedorArticulos.articuloBuscado(nombre);
+            if (producto == null) {
+                System.out.println("Ingrese el precio:");
+                double precio = this.sc.nextDouble();
+                System.out.println("Ingrese la descripcion del producto: ");
+                String descripcion = this.sc.next();
 
-        int codigoArticulo = contenedorArticulos.codigoArticulos();
-        
-        System.out.println("Ingrese el Stock: ");
-        int stock = this.sc.nextInt();
-        
-        char rubro = this.contenedorArticulos.seleccionRubro();
+                int codigoArticulo = contenedorArticulos.codigoArticulos();
+                
+                System.out.println("Ingrese el Stock: ");
+                int stock = this.sc.nextInt();
+                
+                char rubro = this.contenedorArticulos.seleccionRubro();
 
-        Producto nuevoProducto = new ArtSimples(nombre, precio, descripcion, codigoArticulo, stock, rubro, codigoArticulo);
-        this.contenedorArticulos.add(nuevoProducto);
+                Producto nuevoProducto = new ArtSimples(nombre, precio, descripcion, codigoArticulo, stock, rubro, codigoArticulo);
+                this.contenedorArticulos.add(nuevoProducto);   
+            }else{
+                System.out.println("Ese producto ya existe");
+            }    
+        }catch(InputMismatchException e){
+            this.sc.nextLine();
+            System.out.println("ERROR: Ingrese una opcion valida:  ");
+        }
     }
 
       private void cargarArticuloSub(){
-        System.out.println("Ingrese el nombre del producto: ");
-        String nombre = this.sc.next()  + "(S)";
-        System.out.println("Ingrese el precio:");
-        double precio = this.sc.nextDouble();
-        System.out.println("Ingrese la descripcion del producto: ");
-        String descripcion = this.sc.next();
+        try{
+            System.out.println("Ingrese el nombre del producto: ");
+            String nombre = this.sc.next();
+            nombre = nombre + "(S)";
+            Producto producto = this.contenedorArticulos.articuloBuscado(nombre);
+            if (producto == null) {
+                System.out.println("Ingrese el precio:");
+                double precio = this.sc.nextDouble();
+                System.out.println("Ingrese la descripcion del producto: ");
+                String descripcion = this.sc.next();
 
-        int codigoArticulo = cantArticulos;
-        cantArticulos++;
-        
-        System.out.println("Ingrese el Stock: ");
-        int stock = this.sc.nextInt();
-        
-        char rubro = this.contenedorArticulos.seleccionRubro();
+                int codigoArticulo = this.contenedorArticulos.codigoArticulos();
+                
+                System.out.println("Ingrese el Stock: ");
+                int stock = this.sc.nextInt();
+                
+                char rubro = this.contenedorArticulos.seleccionRubro();
 
-        Producto nuevoProducto = new ArtSub(nombre, precio, descripcion, codigoArticulo, stock, rubro);
-        this.contenedorArticulos.add(nuevoProducto);
+                Producto nuevoProducto = new ArtSub(nombre, precio, descripcion, codigoArticulo, stock, rubro);
+                this.contenedorArticulos.add(nuevoProducto);
+            }else{
+                System.out.println("Ese producto ya existe");
+            }         
+        }catch(InputMismatchException e){
+            this.sc.nextLine();
+            System.out.println("ERROR: Ingrese un opcion valida: ");
+        }
     }
 
       private void cargarArtXDemanda(){
-        System.out.println("Ingrese el nombre del producto: ");
-        String nombre = this.sc.next();
-        System.out.println("Ingrese el precio:");
-        double precio = this.sc.nextDouble();
-        System.out.println("Ingrese la descripcion del producto: ");
-        String descripcion = this.sc.next();
+        try{
+            System.out.println("Ingrese el nombre del producto: ");
+            String nombre = this.sc.next();
+            Producto producto = this.contenedorArticulos.articuloBuscado(nombre);
+            if (producto == null) {
+                System.out.println("Ingrese el precio:");
+                double precio = this.sc.nextDouble();
+                System.out.println("Ingrese la descripcion del producto: ");
+                String descripcion = this.sc.next();
 
-        int codigoArticulo = this.contenedorArticulos.codigoArticulos();
-        
-        System.out.println("Ingrese el Stock: ");
-        int stock = this.sc.nextInt();
+                int codigoArticulo = this.contenedorArticulos.codigoArticulos();
+                
+                System.out.println("Ingrese el Stock: ");
+                int stock = this.sc.nextInt();
 
-        System.out.println("Ingrese el stock deseado: ");
-        int stockDeseado = this.sc.nextInt();
-        
-        char rubro = this.contenedorArticulos.seleccionRubro();
+                System.out.println("Ingrese el stock deseado: ");
+                int stockDeseado = this.sc.nextInt();
+                
+                char rubro = this.contenedorArticulos.seleccionRubro();
 
-        Producto nuevoProducto = new ArtXDemanda(nombre, precio, descripcion, codigoArticulo, stock, rubro, stockDeseado);
-        this.contenedorArticulos.add(nuevoProducto);
+                Producto nuevoProducto = new ArtXDemanda(nombre, precio, descripcion, codigoArticulo, stock, rubro, stockDeseado);
+                this.contenedorArticulos.add(nuevoProducto);
+            }else{
+                System.out.println("Ese producto ya existe");
+            }
+        }catch(InputMismatchException e){
+            this.sc.nextLine();
+            System.out.println("ERROR: Ingrese una opcion valida: ");
+        }
     }
-    
+    private void editarArticulo(){
+        try{
+            System.out.println("Ingrese el nombre del articulo: ");
+            String nombre = this.sc.next();
+            Producto articuloAEditar = this.contenedorArticulos.articuloBuscado(nombre);
+
+            if (articuloAEditar == null) {
+                System.out.println("El articulo buscado no existe");
+            }else{
+                System.out.println("Ingrese el nuevo nombre del articulo: ");
+                String nuevoNombre = this.sc.next();
+                articuloAEditar.setNombreArticulo(nuevoNombre);
+                System.out.println("Ingrese el nuevo precio del articulo:");
+                double nuevoPrecio = this.sc.nextDouble();
+                articuloAEditar.setPrecio(nuevoPrecio);
+                System.out.println("Ingrese la nueva descripcion del articulo: ");
+                String nuevaDescripcion = this.sc.next();
+                articuloAEditar.setDescripcion(nuevaDescripcion);
+                
+                int nuevoIdAriculo = this.contenedorArticulos.codigoArticulos();
+                articuloAEditar.setCodigoArticulo(nuevoIdAriculo);
+                
+                char nuevoRubro = this.contenedorArticulos.seleccionRubro();
+                articuloAEditar.setRubro(nuevoRubro);
+
+            }
+        }catch(InputMismatchException e){
+            this.sc.nextLine();
+            System.out.println("ERROR: Ingrese una opcion valida:");
+        }
+    }
+    private void eliminarArticulo(){
+        System.out.println("-------------------------------");
+        System.out.println("Ingrese el nombre del articulo a eliminar: ");
+        String nombreBuscado = this.sc.next();
+        Producto productoBuscado = this.contenedorArticulos.articuloBuscado(nombreBuscado);
+        if (nombreBuscado == null) {
+            System.out.println("Este articulo no existe");
+        }else{
+            this.contenedorArticulos.remove(productoBuscado);
+        }
+        System.out.println("-------------------------------");
+    }
 }

@@ -41,42 +41,14 @@ public class ContArticulos {
             this.mostrarArticulo(producto);
         }
     }
+    public void remove(Producto producto){
+        this.listaArticulos.remove(producto);
+    }
 
     public void add(Producto producto){
         this.listaArticulos.add(producto);
     }
 
-    public void editarArticulo(){
-            try{
-                System.out.println("Ingrese el nombre del articulo: ");
-                String nombre = this.sc.next();
-                Producto articuloAEditar = this.articuloBuscado(nombre);
-
-                if (articuloAEditar == null) {
-                    System.out.println("El articulo buscado no existe");
-                }else{
-                    System.out.println("Ingrese el nuevo nombre del articulo: ");
-                    String nuevoNombre = this.sc.next();
-                    articuloAEditar.setNombreArticulo(nuevoNombre);
-                    System.out.println("Ingrese el nuevo precio del articulo:");
-                    double nuevoPrecio = this.sc.nextDouble();
-                    articuloAEditar.setPrecio(nuevoPrecio);
-                    System.out.println("Ingrese la nueva descripcion del articulo: ");
-                    String nuevaDescripcion = this.sc.next();
-                    articuloAEditar.setDescripcion(nuevaDescripcion);
-                    
-                    int nuevoIdAriculo = this.codigoArticulos();
-                    articuloAEditar.setCodigoArticulo(nuevoIdAriculo);
-                    
-                    char nuevoRubro = seleccionRubro();
-                    articuloAEditar.setRubro(nuevoRubro);
-
-                }
-            }catch(InputMismatchException e){
-                this.sc.nextLine();
-                System.out.println("ERROR: Ingrese una opcion valida:");
-            }
-        }
     public int codigoArticulos(){
         while (true) {
             try{

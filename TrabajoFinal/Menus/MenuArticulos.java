@@ -1,5 +1,6 @@
 package TrabajoFinal.TrabajoFinal.Menus;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import TrabajoFinal.TrabajoFinal.Contenedores.ContArticulos;
@@ -21,7 +22,7 @@ public class MenuArticulos {
     }
 
     private void salir(){
-        continuar = false;
+        this.continuar = false;
     }
 
     public void iniciar(){
@@ -32,17 +33,23 @@ public class MenuArticulos {
     }
 
     private String elegirOpcion(){
-        this.mostrarOpciones();
-        String opcion = this.sc.next();
-        return opcion;
+        while (true) {
+            try{
+                this.mostrarOpciones();
+                String opcion = this.sc.next();
+                return opcion;
+            }catch(InputMismatchException e){
+                this.sc.nextLine();
+                System.out.println("ERROR: Ingrese una opcion correcta");
+            }
+        }
     }
     private void mostrarOpciones(){
         System.out.println("---------- Menu de Articulos ----------");
         System.out.println("1.Cargar Articulo");
         System.out.println("2.Editar Articulo");
         System.out.println("3.Mostrar Todos los Articulos");
-        System.out.println("4.Gestionar Stock");
-        System.out.println("5.Volver al menu de empleados");
+        System.out.println("4.Volver al menu de empleados");
         System.out.println("--------------------");
     }
     private void ejecutarOpcion(String opcion){
@@ -61,9 +68,6 @@ public class MenuArticulos {
                 this.contenedorArticulos.mostrarAllArticulos();
                 break;
             case "4":
-                //Gestionar Stock
-                break;
-            case "5":
                 this.salir();
                 break;
             default:
@@ -107,8 +111,7 @@ public class MenuArticulos {
         System.out.println("Ingrese la descripcion del producto: ");
         String descripcion = this.sc.next();
 
-        int codigoArticulo = cantArticulos;
-        cantArticulos++;
+        int codigoArticulo = contenedorArticulos.codigoArticulos();
         
         System.out.println("Ingrese el Stock: ");
         int stock = this.sc.nextInt();

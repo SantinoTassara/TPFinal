@@ -1,5 +1,6 @@
 package TrabajoFinal.TrabajoFinal.Menus;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import TrabajoFinal.TrabajoFinal.Contenedores.ContArticulos;
@@ -38,9 +39,16 @@ public class MenuClientes {
     }
 
     private int elegirOpcion(){
-        this.mostrarOpciones();
-        int opcion = this.sc.nextInt();
-        return opcion;
+        while (true) {
+            try{
+                this.mostrarOpciones();
+                int opcion = this.sc.nextInt();
+                return opcion;
+            }catch(InputMismatchException e){
+                this.sc.nextLine();
+                System.out.println("ERROR: Ingrese una opcion valida");
+            }
+        }
     }
 
     private void mostrarOpciones(){
@@ -89,7 +97,7 @@ public class MenuClientes {
                     this.carrito.verCarrito();
                     break;
                 case 10:
-
+                    this.carrito.finalizarCompra();
                     break;
                 case 0:
                     this.salir();
@@ -102,36 +110,47 @@ public class MenuClientes {
 }
 
     private void agregarDinero(){
-        System.out.println("Ingrese la cantidad de dinero que quiere agregar");
-        double dineroAAgregar = this.sc.nextDouble();
+            try{
+                System.out.println("Ingrese la cantidad de dinero que quiere agregar");
+                double dineroAAgregar = this.sc.nextDouble();
 
-        if (dineroAAgregar <= 0) {
-            System.out.println("ERROR: No se puede agregar una dinero negativo");
-        }else{
-            double dineroActual = this.usuarioLogeado.getBilletera();
-            dineroAAgregar = dineroAAgregar + dineroActual;
+                if (dineroAAgregar <= 0) {
+                    System.out.println("ERROR: No se puede agregar una dinero negativo");
+                }else{
+                    double dineroActual = this.usuarioLogeado.getBilletera();
+                    dineroAAgregar = dineroAAgregar + dineroActual;
 
-            this.usuarioLogeado.setBilletera(dineroAAgregar);
-        }
+                    this.usuarioLogeado.setBilletera(dineroAAgregar);
+                }   
+            }catch(InputMismatchException e){
+                this.sc.nextLine();
+                System.out.println("ERROR: Ingrese una opcion valida:");
+            }
     }
 
     private void retirarDinero(){
-        System.out.println("Ingrese la cantidad de dinero que quiere retirar");
-        double dineroARetirar = this.sc.nextDouble();
+            try{
+                System.out.println("Ingrese la cantidad de dinero que quiere retirar");
+                double dineroARetirar = this.sc.nextDouble();
 
-        if (dineroARetirar < 0) {
-            System.out.println("ERRO: Opcion invalida seleccione un numero positivo");
-        }else{
-            
-            double dineroActual = this.usuarioLogeado.getBilletera();
-            if (dineroARetirar > dineroActual) {
-                System.out.println("Saldo insuficiente");
-            }else{
-                dineroARetirar = dineroActual - dineroARetirar;
-                this.usuarioLogeado.setBilletera(dineroARetirar);
+                if (dineroARetirar < 0) {
+                System.out.println("ERRO: Opcion invalida seleccione un numero positivo");
+                }else{
+                
+                double dineroActual = this.usuarioLogeado.getBilletera();
+                if (dineroARetirar > dineroActual) {
+                    System.out.println("Saldo insuficiente");
+                }else{
+                    dineroARetirar = dineroActual - dineroARetirar;
+                    this.usuarioLogeado.setBilletera(dineroARetirar);
+                    }
+                }
+            }catch(InputMismatchException e){
+                this.sc.nextLine();
+                System.out.println("ERROR: Ingrese una opcion valida:");
             }
-        }
     }
+
 
     private void verSaldo(){
         double saldoDisponible = this.usuarioLogeado.getBilletera();
@@ -150,27 +169,32 @@ public class MenuClientes {
         }     
     }
     private void transferirDinero(){
-        System.out.println("Ingrese el usuario al que quiere transferir");
-        String nombreBuscado = this.sc.next();
+            try{
+                System.out.println("Ingrese el usuario al que quiere transferir");
+                String nombreBuscado = this.sc.next();
 
-        Usuario usuarioBuscado = this.contUsuarios.buscarUsuario(nombreBuscado);
+                Usuario usuarioBuscado = this.contUsuarios.buscarUsuario(nombreBuscado);
 
-        if (usuarioBuscado == null) {
-            System.out.println("El usuario buscado no existe");
-        }else{
-            System.out.println("Ingrese la cantidad de dinero que quiere transferir");
-            double dineroATransferir = this.sc.nextDouble();
+                if (usuarioBuscado == null) {
+                    System.out.println("El usuario buscado no existe");
+                }else{
+                    System.out.println("Ingrese la cantidad de dinero que quiere transferir");
+                    double dineroATransferir = this.sc.nextDouble();
 
-            if (dineroATransferir > this.usuarioLogeado.getBilletera()) {
-                System.out.println("Saldo insuficiente");
-            }else{
-                usuarioBuscado.setBilletera(dineroATransferir);
-                double dineroFinal = this.usuarioLogeado.getBilletera();
+                    if (dineroATransferir > this.usuarioLogeado.getBilletera()) {
+                    System.out.println("Saldo insuficiente");
+                    }else{
+                    usuarioBuscado.setBilletera(dineroATransferir);
+                    double dineroFinal = this.usuarioLogeado.getBilletera();
 
-                dineroFinal = dineroFinal - dineroATransferir;
-                this.usuarioLogeado.setBilletera(dineroFinal);
+                    dineroFinal = dineroFinal - dineroATransferir;
+                    this.usuarioLogeado.setBilletera(dineroFinal);
+                    }
+                }
+            }catch(InputMismatchException e){
+                this.sc.nextLine();
+                System.out.println("ERROR: Ingrese una opcion valida:");
             }
-        }
     }
     private void agregarProducto(){
         System.out.println("Ingrese el nombre del producto que quiere agregar");

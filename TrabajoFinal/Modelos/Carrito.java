@@ -80,7 +80,7 @@ public class Carrito {
             if (precioFinal > usuarioLogueado.getBilletera()) {
                 System.out.println("Saldo insuficiente");
             }else{
-                reducirStock();
+                this.reducirStock();
                 double dineroADescontar = usuarioLogueado.getBilletera() - precioFinal;
                 usuarioLogueado.setBilletera(dineroADescontar);
                 System.out.println("Compra finalizada. Muchas Gracias");

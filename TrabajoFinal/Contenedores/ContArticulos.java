@@ -1,6 +1,7 @@
 package TrabajoFinal.TrabajoFinal.Contenedores;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import TrabajoFinal.TrabajoFinal.Modelos.Producto;
@@ -46,49 +47,64 @@ public class ContArticulos {
     }
 
     public void editarArticulo(){
-        System.out.println("Ingrese el nombre del articulo: ");
-        String nombre = this.sc.next();
-        Producto articuloAEditar = this.articuloBuscado(nombre);
+            try{
+                System.out.println("Ingrese el nombre del articulo: ");
+                String nombre = this.sc.next();
+                Producto articuloAEditar = this.articuloBuscado(nombre);
 
-        if (articuloAEditar == null) {
-            System.out.println("El articulo buscado no existe");
-        }else{
-            System.out.println("Ingrese el nuevo nombre del articulo: ");
-            String nuevoNombre = this.sc.next();
-            articuloAEditar.setNombreArticulo(nuevoNombre);
-            System.out.println("Ingrese el nuevo precio del articulo:");
-            double nuevoPrecio = this.sc.nextDouble();
-            articuloAEditar.setPrecio(nuevoPrecio);
-            System.out.println("Ingrese la nueva descripcion del articulo: ");
-            String nuevaDescripcion = this.sc.next();
-            articuloAEditar.setDescripcion(nuevaDescripcion);
-            
-            int nuevoIdAriculo = this.codigoArticulos();
-            articuloAEditar.setCodigoArticulo(nuevoIdAriculo);
-            
-            char nuevoRubro = seleccionRubro();
-            articuloAEditar.setRubro(nuevoRubro);
+                if (articuloAEditar == null) {
+                    System.out.println("El articulo buscado no existe");
+                }else{
+                    System.out.println("Ingrese el nuevo nombre del articulo: ");
+                    String nuevoNombre = this.sc.next();
+                    articuloAEditar.setNombreArticulo(nuevoNombre);
+                    System.out.println("Ingrese el nuevo precio del articulo:");
+                    double nuevoPrecio = this.sc.nextDouble();
+                    articuloAEditar.setPrecio(nuevoPrecio);
+                    System.out.println("Ingrese la nueva descripcion del articulo: ");
+                    String nuevaDescripcion = this.sc.next();
+                    articuloAEditar.setDescripcion(nuevaDescripcion);
+                    
+                    int nuevoIdAriculo = this.codigoArticulos();
+                    articuloAEditar.setCodigoArticulo(nuevoIdAriculo);
+                    
+                    char nuevoRubro = seleccionRubro();
+                    articuloAEditar.setRubro(nuevoRubro);
 
-        }
-    }
-    public int codigoArticulos(){
-        int codigoArticulo = 0;
-        boolean noRepetido = true;
-        
-        while (noRepetido == true) {
-            System.out.println("Ingresa el id del articulo: ");
-            codigoArticulo = this.sc.nextInt();
-
-            for (Producto producto : listaArticulos) {
-                if (codigoArticulo == producto.getCodigoArticulo()) {
-                    noRepetido = false;
-                    System.out.println("Ya existe ese ID de producto, ingrese otro.");
-                    break;
                 }
+            }catch(InputMismatchException e){
+                this.sc.nextLine();
+                System.out.println("ERROR: Ingrese una opcion valida:");
             }
         }
+    public int codigoArticulos(){
+        while (true) {
+            try{
+                System.out.println("ingrese el codigo de articulo: ");
+                int codigoArticulo = this.sc.nextInt();
+                boolean validado = this.validarCode(codigoArticulo);
+                while (validado == false) {
+                    System.out.println("Ese codigo de articulo ya existe, ingrese otro: ");
+                    codigoArticulo = this.sc.nextInt();
+                    validado = this.validarCode(codigoArticulo);
+                }
 
-        return codigoArticulo;
+                return codigoArticulo;
+                }catch(InputMismatchException e){
+                    this.sc.nextLine();
+                    System.out.println("ERROR: Ingrese una opcion valida:");
+                }
+            }
+    }
+    private boolean validarCode(int codigoArticulo){
+        boolean validado = true;
+        for (Producto producto : listaArticulos) {
+            if (producto.getCodigoArticulo() == codigoArticulo) {
+                validado = false;
+                break;
+            }
+        }
+        return validado;
     }
     public char seleccionRubro(){
         char rubro = 0;

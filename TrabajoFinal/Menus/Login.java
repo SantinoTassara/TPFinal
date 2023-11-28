@@ -1,5 +1,6 @@
 package TrabajoFinal.TrabajoFinal.Menus;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import TrabajoFinal.TrabajoFinal.Contenedores.ContArticulos;
@@ -22,8 +23,8 @@ public class Login {
         this.contArticulos = contArticulos;
         //los menus reciben el scanner y la lista
         mRegister = new Register(sc, contUsuarios);
-        mClientes = new MenuClientes(sc, contArticulos, contUsuarios);
-        mEmpleado = new MenuEmpleado(sc, contArticulos);
+        contArticulos = new ContArticulos(sc);
+        contUsuarios = new ContUsuarios(sc);
     }
 
     private void salir(){
@@ -40,12 +41,20 @@ public class Login {
     }
 
     private String elegirOpcion(){
-        this.mostrarOpciones();
-        String opcion = this.sc.next();
-        return opcion;
+        while (true) {
+            try{
+                this.mostrarOpciones();
+                String opcion = this.sc.next();
+                return opcion;
+            }catch(InputMismatchException e){
+                this.sc.nextLine();
+                System.out.println("ERROR: Ingrese una opcion valida");
+            }
+        }
     }
     
     private void mostrarOpciones(){
+        System.out.println("0. Salir");
         System.out.println("1.Registrarse");
         System.out.println("2.Login");
     }
@@ -79,8 +88,10 @@ public class Login {
             if (usuarioEncontrado.getPassword().equals(password)) {
                 //Aca verifica si el usuario es empleado o Cliente
                 if (usuarioEncontrado.getRol().equals("Cliente")) {
+                    mClientes = new MenuClientes(sc, contArticulos, contUsuarios);
                     mClientes.iniciar(usuarioEncontrado);
                 }else if (usuarioEncontrado.getRol().equals("Empleado")) {
+                    mEmpleado = new MenuEmpleado(sc, contArticulos);
                     mEmpleado.iniciar(usuarioEncontrado);
                 }
 

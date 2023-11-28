@@ -1,7 +1,5 @@
 /*Cosas a agregar:
-    -Carrito
     Menu Cliente:
-    -Todas las opciones que tiene que ver con el carrito
     Menu empleado: 
     -otras cosas (Revisar)
     Articulos:
@@ -24,7 +22,7 @@ public class Main {
         ContUsuarios contUsuarios = new ContUsuarios(sc);
         ContArticulos contArticulos = new ContArticulos(sc);
         Login mLogin = new Login(sc, contUsuarios, contArticulos);
-
+        
         mLogin.iniciar();
 
         

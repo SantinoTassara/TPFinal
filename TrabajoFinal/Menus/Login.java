@@ -44,7 +44,7 @@ public class Login {
         while (true) {
             try{
                 this.mostrarOpciones();
-                String opcion = this.sc.next();
+                String opcion = this.sc.nextLine();
                 return opcion;
             }catch(InputMismatchException e){
                 this.sc.nextLine();
@@ -77,14 +77,14 @@ public class Login {
     //funcion login
     private void login(){
         System.out.println("Ingrese el nombre de usuario");
-        String username = this.sc.next();
+        String username = this.sc.nextLine();
         Usuario usuarioEncontrado = this.contUsuarios.buscarUsuario(username);
 
         if (usuarioEncontrado == null ) {
             System.out.println("El usuario no existe");
         }else{
             System.out.println("Ingrese la contraseña: ");
-            String password = this.sc.next();
+            String password = this.sc.nextLine();
             if (usuarioEncontrado.getPassword().equals(password)) {
                 //Aca verifica si el usuario es empleado o Cliente
                 if (usuarioEncontrado.getRol().equals("Cliente")) {

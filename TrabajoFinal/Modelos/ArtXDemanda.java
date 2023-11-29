@@ -20,7 +20,6 @@ public class ArtXDemanda extends Producto {
 
     public double getPrecioFinal(){
         double precioFinal = getPrecio();
-        //No se si esto va a funcionar o volar todo a la mierda pero despues lo arreglo (O_O)
         if (this.getStockDeseado() < this.getStock()) {
             double porcentajeExcedido = ((double) getStock() - getStockDeseado()) / getStockDeseado();
             double descuento = Math.min(porcentajeExcedido, 0.5) * 100;

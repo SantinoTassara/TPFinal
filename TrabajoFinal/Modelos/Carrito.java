@@ -72,7 +72,7 @@ public class Carrito {
             for (Renglon renglon : listaRenglones) {
             Producto producto = renglon.getProducto();
             double precioFinalProducto = renglon.calcularSubtotal();
-            System.out.println("Cantidad: " + renglon.getCantidad() + "Nombre del producto: " + producto.getNombreArticulo() + "Precio por unidad: " + producto.getPrecio() + "Precio Total" + precioFinalProducto);
+            System.out.println("Cantidad: " + renglon.getCantidad() + " Nombre del producto: " + producto.getNombreArticulo() + " Precio por unidad: " + producto.getPrecio() + " Precio Total" + precioFinalProducto);
             System.out.println("------------------------------------------");
             precioFinal = precioFinal + precioFinalProducto;
         }
@@ -85,6 +85,11 @@ public class Carrito {
                 double dineroADescontar = saldoDisponible - precioFinal;
                 usuarioLogueado.setBilletera(dineroADescontar);
                 System.out.println("Compra finalizada. Muchas Gracias");
+
+                //limpia la lista despues de la compra
+                for (Renglon renglon : listaRenglones) {
+                    this.listaRenglones.remove(renglon);
+                }
             }
         }
 

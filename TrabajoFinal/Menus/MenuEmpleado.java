@@ -71,7 +71,7 @@ public class MenuEmpleado {
     private void editarStock() {
             try{
                 System.out.println("Ingrese el nombre del producto a editar el stock:");
-                String nombreBuscado = this.sc.next();
+                String nombreBuscado = this.sc.nextLine();
 
                 // Busca el producto en la lista
                 Producto productoBuscado = this.contArticulos.articuloBuscado(nombreBuscado);

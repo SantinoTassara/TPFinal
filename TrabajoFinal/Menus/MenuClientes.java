@@ -22,8 +22,6 @@ public class MenuClientes {
         this.sc = sc;
         this.contArticulos = contArticulos;
         this.contUsuarios = contUsuarios;
-
-        this.carrito = new Carrito(usuarioLogeado);
     }
 
     private void salir(){
@@ -32,6 +30,7 @@ public class MenuClientes {
 
     public void iniciar(Usuario usuario){
         this.usuarioLogeado = usuario;
+        this.carrito = new Carrito(usuarioLogeado);
         while (continuar) {
             int opcion = this.elegirOpcion();
             this.ejecutarOpcion(opcion);
@@ -160,6 +159,12 @@ public class MenuClientes {
     private void buscarArticulo(){
         System.out.println("Ingrese el nombre del articulo buscado");
         String nombreBuscado = this.sc.next();
+        
+        System.out.println("EL ARTICULO ES SUBSIDIADO: (S/N)");
+        char respuesta = this.sc.next().charAt(0);
+        if (respuesta == 'S'||respuesta == 's') {
+            nombreBuscado = nombreBuscado + "(S)";
+        }
 
         Producto articuloBuscado = this.contArticulos.articuloBuscado(nombreBuscado);
         if (articuloBuscado == null) {
@@ -199,6 +204,13 @@ public class MenuClientes {
     private void agregarProducto(){
         System.out.println("Ingrese el nombre del producto que quiere agregar");
         String nombreBuscado = this.sc.next();
+
+        System.out.println("EL ARTICULO ES SUBSIDIADO: (S/N)");
+        char respuesta = this.sc.next().charAt(0);
+
+        if (respuesta == 'S'||respuesta == 's') {
+            nombreBuscado = nombreBuscado + "(S)";
+        }
 
         Producto productoAAgregar = this.contArticulos.articuloBuscado(nombreBuscado);
 

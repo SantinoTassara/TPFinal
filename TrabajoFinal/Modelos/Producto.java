@@ -7,15 +7,17 @@ public abstract class Producto {
     private int codigoArticulo;
     private int stock;
     private char rubro;
+    private String tipo;
     
     public Producto(String nombreArticulo, double precio, String descripcion, int codigoArticulo, int stock,
-            char rubro) {
+            char rubro, String tipo) {
         this.nombreArticulo = nombreArticulo;
         this.precio = precio;
         this.descripcion = descripcion;
         this.codigoArticulo = codigoArticulo;
         this.stock = stock;
         this.rubro = rubro;
+        this.tipo = tipo;
     }
 
     public String getNombreArticulo() {
@@ -66,7 +68,12 @@ public abstract class Producto {
         this.rubro = rubro;
     }
     
+    
     public abstract double getPrecioFinal();    
 
     public abstract String toString();
+
+    public String getTipo() {
+        return tipo;
+    }
 }

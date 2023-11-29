@@ -3,8 +3,8 @@ package TrabajoFinal.TrabajoFinal.Modelos;
 public class ArtSimples extends Producto {
 
     public ArtSimples(String nombreArticulo, double precio, String descripcion, int codigoArticulo, int stock,
-            char rubro, int lol) {
-        super(nombreArticulo, precio, descripcion, codigoArticulo, stock, rubro);
+            char rubro, int lol,String tipo) {
+        super(nombreArticulo, precio, descripcion, codigoArticulo, stock, rubro,tipo);
     }
 
 

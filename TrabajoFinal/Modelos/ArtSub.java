@@ -3,8 +3,8 @@ package TrabajoFinal.TrabajoFinal.Modelos;
 public class ArtSub extends Producto {
 
 
-    public ArtSub(String nombreArticulo, double precio, String descripcion, int codigoArticulo, int stock, char rubro) {
-        super(nombreArticulo, precio, descripcion, codigoArticulo, stock, rubro);
+    public ArtSub(String nombreArticulo, double precio, String descripcion, int codigoArticulo, int stock, char rubro, String tipo) {
+        super(nombreArticulo, precio, descripcion, codigoArticulo, stock, rubro, tipo);
     }
 
     public double getPrecioFinal(){

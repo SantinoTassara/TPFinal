@@ -1,11 +1,3 @@
-/*Cosas a agregar:
-    Menu Cliente:
-    Menu empleado: 
-    -otras cosas (Revisar)
-    Articulos:
-    -hay que verificar si los descuentos se aplican correctamente
-*/
-
 package TrabajoFinal.TrabajoFinal.Mains;
 
 

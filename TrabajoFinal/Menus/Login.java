@@ -54,9 +54,12 @@ public class Login {
     }
     
     private void mostrarOpciones(){
+        System.out.println("------------------");
         System.out.println("0. Salir");
         System.out.println("1.Registrarse");
         System.out.println("2.Login");
+        System.out.println("------------------");
+
     }
 
     private void ejecutarOpcion(String opcion){
@@ -77,14 +80,14 @@ public class Login {
     //funcion login
     private void login(){
         System.out.println("Ingrese el nombre de usuario");
-        String username = this.sc.nextLine();
+        String username = this.sc.next();
         Usuario usuarioEncontrado = this.contUsuarios.buscarUsuario(username);
 
         if (usuarioEncontrado == null ) {
             System.out.println("El usuario no existe");
         }else{
             System.out.println("Ingrese la contraseña: ");
-            String password = this.sc.nextLine();
+            String password = this.sc.next();
             if (usuarioEncontrado.getPassword().equals(password)) {
                 //Aca verifica si el usuario es empleado o Cliente
                 if (usuarioEncontrado.getRol().equals("Cliente")) {

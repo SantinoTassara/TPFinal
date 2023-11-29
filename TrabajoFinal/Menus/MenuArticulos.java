@@ -138,14 +138,14 @@ public class MenuArticulos {
       private void cargarArticuloSub(){
         try{
             System.out.println("Ingrese el nombre del producto: ");
-            String nombre = this.sc.nextLine();
+            String nombre = this.sc.next();
             nombre = nombre + "(S)";
             Producto producto = this.contenedorArticulos.articuloBuscado(nombre);
             if (producto == null) {
                 System.out.println("Ingrese el precio:");
                 double precio = this.sc.nextDouble();
                 System.out.println("Ingrese la descripcion del producto: ");
-                String descripcion = this.sc.nextLine();
+                String descripcion = this.sc.next();
 
                 int codigoArticulo = this.contenedorArticulos.codigoArticulos();
                 
@@ -170,13 +170,13 @@ public class MenuArticulos {
       private void cargarArtXDemanda(){
         try{
             System.out.println("Ingrese el nombre del producto: ");
-            String nombre = this.sc.nextLine();
+            String nombre = this.sc.next();
             Producto producto = this.contenedorArticulos.articuloBuscado(nombre);
             if (producto == null) {
                 System.out.println("Ingrese el precio:");
                 double precio = this.sc.nextDouble();
                 System.out.println("Ingrese la descripcion del producto: ");
-                String descripcion = this.sc.nextLine();
+                String descripcion = this.sc.next();
 
                 int codigoArticulo = this.contenedorArticulos.codigoArticulos();
                 
@@ -202,7 +202,7 @@ public class MenuArticulos {
     private void editarArticulo(){
         try{
             System.out.println("Ingrese el nombre del articulo: ");
-            String nombre = this.sc.nextLine();
+            String nombre = this.sc.next();
 
             System.out.println("EL ARTICULO ES SUBSIDIADO: (S/N)");
             char respuesta = this.sc.next().charAt(0);
@@ -215,7 +215,7 @@ public class MenuArticulos {
                 System.out.println("El articulo buscado no existe");
             }else{
                 System.out.println("Ingrese el nuevo nombre del articulo: ");
-                String nuevoNombre = this.sc.nextLine();
+                String nuevoNombre = this.sc.next();
                 if (respuesta == 'S'||respuesta == 's') {
                         nuevoNombre = nuevoNombre + "(S)";
                     }
@@ -224,7 +224,7 @@ public class MenuArticulos {
                 double nuevoPrecio = this.sc.nextDouble();
                 articuloAEditar.setPrecio(nuevoPrecio);
                 System.out.println("Ingrese la nueva descripcion del articulo: ");
-                String nuevaDescripcion = this.sc.nextLine();
+                String nuevaDescripcion = this.sc.next();
                 articuloAEditar.setDescripcion(nuevaDescripcion);
                 
                 int nuevoIdAriculo = this.contenedorArticulos.codigoArticulos();
@@ -242,7 +242,7 @@ public class MenuArticulos {
     private void eliminarArticulo(){
         System.out.println("-------------------------------");
         System.out.println("Ingrese el nombre del articulo a eliminar: ");
-        String nombreBuscado = this.sc.nextLine();
+        String nombreBuscado = this.sc.next();
         Producto productoBuscado = this.contenedorArticulos.articuloBuscado(nombreBuscado);
         if (nombreBuscado == null) {
             System.out.println("Este articulo no existe");

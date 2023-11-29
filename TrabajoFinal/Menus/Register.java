@@ -26,13 +26,13 @@ public class Register {
         Usuario usuarioARegistrar = null;
 
         System.out.println("Ingrese el nombre de usuario: ");
-        String username = this.sc.nextLine();
+        String username = this.sc.next();
         usuarioARegistrar = this.contUsuarios.buscarUsuario(username);
         
         if (usuarioARegistrar != null) {
             while (usuarioARegistrar != null) {
             System.out.println("El nombre de usuario ya esta registrado ingrese otro: ");
-            username = this.sc.nextLine();
+            username = this.sc.next();
             usuarioARegistrar = this.contUsuarios.buscarUsuario(username);
         }
         }
@@ -90,9 +90,9 @@ public class Register {
 
         while (verificado == false) {
             System.out.println("Ingrese la contraseña");
-            clave = this.sc.nextLine();
+            clave = this.sc.next();
             System.out.println("Ingrese nuevamente la contraseña");
-            verificarClave = this.sc.nextLine();
+            verificarClave = this.sc.next();
             if (clave.equals(verificarClave)) {
                 verificado = true;
             }

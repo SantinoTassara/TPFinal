@@ -158,7 +158,7 @@ public class MenuClientes {
 
     private void buscarArticulo(){
         System.out.println("Ingrese el nombre del articulo buscado");
-        String nombreBuscado = this.sc.nextLine();
+        String nombreBuscado = this.sc.next();
         
         System.out.println("EL ARTICULO ES SUBSIDIADO: (S/N)");
         char respuesta = this.sc.next().charAt(0);
@@ -176,7 +176,7 @@ public class MenuClientes {
     private void transferirDinero(){
             try{
                 System.out.println("Ingrese el usuario al que quiere transferir");
-                String nombreBuscado = this.sc.nextLine();
+                String nombreBuscado = this.sc.next();
 
                 Usuario usuarioBuscado = this.contUsuarios.buscarUsuario(nombreBuscado);
 
@@ -186,6 +186,9 @@ public class MenuClientes {
                     System.out.println("Ingrese la cantidad de dinero que quiere transferir");
                     double dineroATransferir = this.sc.nextDouble();
 
+                    if (dineroATransferir <= 0) {
+                        System.out.println("No se puede transferir dinero negativo: ");
+                    }else{
                     if (dineroATransferir > this.usuarioLogeado.getBilletera()) {
                     System.out.println("Saldo insuficiente");
                     }else{
@@ -196,6 +199,7 @@ public class MenuClientes {
                     this.usuarioLogeado.setBilletera(dineroFinal);
                     }
                 }
+                }
             }catch(InputMismatchException e){
                 this.sc.nextLine();
                 System.out.println("ERROR: Ingrese una opcion valida:");
@@ -203,7 +207,7 @@ public class MenuClientes {
     }
     private void agregarProducto(){
         System.out.println("Ingrese el nombre del producto que quiere agregar");
-        String nombreBuscado = this.sc.nextLine();
+        String nombreBuscado = this.sc.next();
 
         System.out.println("EL ARTICULO ES SUBSIDIADO: (S/N)");
         char respuesta = this.sc.next().charAt(0);
@@ -230,7 +234,7 @@ public class MenuClientes {
 
     private void eliminarProducto(){
         System.out.println("Ingrese el nombre del producto que quiera eliminar del carrito");
-        String nombreBuscado = this.sc.nextLine();
+        String nombreBuscado = this.sc.next();
         System.out.println("EL ARTICULO ES SUBSIDIADO: (S/N)");
         char respuesta = this.sc.next().charAt(0);
 
